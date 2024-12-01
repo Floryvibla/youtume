@@ -3026,3 +3026,8 @@ youtube-search-api@^1.2.2:
   integrity sha512-zvC+3pDS5Cclv+n+EFunaHzTMAAgt88x5Cth5KpT1xL5Pic30U5oSN2HwFL7rofT8ffDrkitAmBK5UOo9JzjlA==
   dependencies:
     axios "^0.21.0"
+
+youtube-transcript@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/youtube-transcript/-/youtube-transcript-1.2.1.tgz#dd9ddadb7a3b5882e45574a82663c440634e8765"
+  integrity sha512-TvEGkBaajKw+B6y91ziLuBLsa5cawgowou+Bk0ciGpjELDfAzSzTGXaZmeSSkUeknCPpEr/WGApOHDwV7V+Y9Q==

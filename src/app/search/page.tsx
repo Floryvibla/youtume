@@ -171,10 +171,7 @@ export default async function SearchPage({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {channels.map((channel) => (
                 <Link
-                  href={
-                    channel.shortBylineText?.runs[0].navigationEndpoint
-                      .browseEndpoint.canonicalBaseUrl || "#"
-                  }
+                  href={channel.id ? `/channel/${channel.id}` : "#"}
                   key={channel.id}
                   className="block p-4 border rounded-lg hover:bg-foreground/5 transition-colors"
                 >
