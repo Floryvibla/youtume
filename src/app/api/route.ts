@@ -1,3 +1,5 @@
+import { transformTranscript } from "@/lib/youtube";
+import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { YoutubeTranscript } from "youtube-transcript";
 
@@ -12,16 +14,27 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  try {
-    const transcription = await YoutubeTranscript.fetchTranscript(query);
-    if (!transcription) {
-      return NextResponse.json(
-        { error: "transcription not found" },
-        { status: 404 }
-      );
-    }
+  const videoParams = new URLSearchParams(query);
+  const videoId = videoParams.get("https://www.youtube.com/watch?v");
 
-    return NextResponse.json(transcription);
+  const response = await axios.get(
+    `https://youtubetranscript.com/?server_vid2=${videoId}`
+  );
+
+  const html = response.data;
+
+  const transcript = transformTranscript(html);
+
+  try {
+    // const transcription = await YoutubeTranscript.fetchTranscript(query);
+    // if (!transcription) {
+    //   return NextResponse.json(
+    //     { error: "transcription not found" },
+    //     { status: 404 }
+    //   );
+    // }
+
+    return NextResponse.json({ transcript });
   } catch (error) {
     console.error("Video fetch error:", error);
     return NextResponse.json(

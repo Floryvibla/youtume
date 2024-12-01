@@ -100,3 +100,23 @@ export const youtubeService = {
     }
   },
 };
+
+export function transformTranscript(transcript: string) {
+  if (!transcript) {
+    return [];
+  }
+  const regex = /<text start="([\d.]+)" dur="([\d.]+)">(.*?)<\/text>/g;
+  const result = [];
+  let match;
+
+  while ((match = regex.exec(transcript)) !== null) {
+    const [, start, duration, text] = match;
+    result.push({
+      text: text.trim(),
+      duration: parseFloat(duration),
+      offset: parseFloat(start),
+    });
+  }
+
+  return result;
+}
